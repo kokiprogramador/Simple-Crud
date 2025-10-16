@@ -44,7 +44,7 @@ export const todoGetById = async (req, res) => {
   }
 };
 
-export const todoPut = (req, res) => {
+export const todoPut = async (req, res) => {
   const data = {
     content: req.body.content,
     description: req.body.description,
@@ -54,7 +54,7 @@ export const todoPut = (req, res) => {
 
   try {
     if (data) {
-      Task.update(
+      await Task.update(
         {
           content: data.content,
           description: data.description,
@@ -69,15 +69,30 @@ export const todoPut = (req, res) => {
       );
     }
   } catch {
-    res
-      .status(500)
-      .json({
-        message: "External server error, please contact customer support",
-      });
+    res.status(500).json({
+      message: "External server error, please contact customer support",
+    });
   }
 };
 
-export const todoDelete = (req, res) => {};
+export const todoDelete = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    if (id) {
+      await Task.destroy({
+        where: {
+          id: id,
+        },
+      });
+    }
+    res.status(200).json({ message: "Task deleted" });
+  } catch {
+    res.status(500).json({
+      message: "External server error, please contact customer support",
+    });
+  }
+};
 
 export default {
   todoGetAll,
