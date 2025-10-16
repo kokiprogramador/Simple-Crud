@@ -44,7 +44,38 @@ export const todoGetById = async (req, res) => {
   }
 };
 
-export const todoPut = (req, res) => {};
+export const todoPut = (req, res) => {
+  const data = {
+    content: req.body.content,
+    description: req.body.description,
+    isComplete: req.body.isComplete,
+    id: req.params.id,
+  };
+
+  try {
+    if (data) {
+      Task.update(
+        {
+          content: data.content,
+          description: data.description,
+          isComplete: data.isComplete,
+        },
+        {
+          where: {
+            id: data.id,
+          },
+        },
+        res.status(200).json(data),
+      );
+    }
+  } catch {
+    res
+      .status(500)
+      .json({
+        message: "External server error, please contact customer support",
+      });
+  }
+};
 
 export const todoDelete = (req, res) => {};
 

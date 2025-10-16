@@ -6,5 +6,6 @@ const router = Router();
 router.get("/tasks", todoControllers.todoGetAll);
 router.post("/createTask", todoControllers.todoPost);
 router.get("/getTask/:id", todoControllers.todoGetById);
+router.put("/putTask/:id", todoControllers.todoPut);
 
 export default router;
