@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import bodyParser from "body-parser";
 import { config } from "dotenv";
 import todoRoutes from "./routes/todoRoutes.js";
@@ -7,6 +8,11 @@ import { sequelize, connectToDb } from "./db.js";
 config();
 
 const app = express();
+const corsOptions = {
+  origin: "http://localhost:5173/",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  credentials: true,
+};
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
