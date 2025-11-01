@@ -1,5 +1,5 @@
 import { FC } from "react";
-import ComponentsInterface from "../../../types/ComponentsInterface.tsx";
+import { ComponentsInterface } from "../../../types/ComponentsInterface.tsx";
 import styles from "./Input.module.css";
 
 const Input: FC<ComponentsInterface> = ({ Type, PlaceHolder, Value, Name, OnChange, CustomClass }) => {

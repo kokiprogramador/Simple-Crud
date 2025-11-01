@@ -1,9 +1,9 @@
 import { FC } from "react";
-import ComponentsInterface from "../../../types/ComponentsInterface.tsx";
+import { ComponentsInterface } from "../../../types/ComponentsInterface.tsx";
 import styles from "./Headings.module.css";
 
-const Headings: FC<ComponentsInterface> = ({ Text, Type, CustomClass }) => {
-  switch (Type) {
+const Headings: FC<ComponentsInterface> = ({ Text, TypeHeader, CustomClass }) => {
+  switch (TypeHeader) {
     case "h1":
       return <h1 className={`${styles.Heading} ${CustomClass}`}>{Text}</h1>;
     case "h2":
