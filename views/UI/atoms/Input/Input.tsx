@@ -1,8 +1,15 @@
 import { FC } from "react";
-import { ComponentsInterface } from "../../../types/ComponentsInterface.tsx";
+import { InputsInterface } from "../../../types/InputsInterface";
 import styles from "./Input.module.css";
 
-const Input: FC<ComponentsInterface> = ({ Type, PlaceHolder, Value, Name, OnChange, CustomClass }) => {
+const Input: FC<InputsInterface> = ({
+  Type,
+  PlaceHolder,
+  Value,
+  Name,
+  OnChange,
+  CustomClass,
+}) => {
   return (
     <input
       type={Type}

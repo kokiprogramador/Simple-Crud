@@ -1,0 +1,14 @@
+:root{
+	--header-color: #07020D;
+	--items-color: #F1E9DB;
+	--body-color: #5DB7DE;
+	--cards-color: #716A5C;
+	--footer-color: #0B0316; 
+}
+
+.Header{
+	display: flex;
+	padding: 1.2%;
+	background: var(--header-color);
+	color: var(--items-color); 
+}

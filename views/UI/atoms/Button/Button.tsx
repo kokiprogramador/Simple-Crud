@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { ComponentsInterface } from "../../../types/ComponentsInterface.tsx";
+import { ButtonsInterface } from "../../../types/ButtonsInterface.tsx";
 import styles from "./styles.module.css";
 
-const Button: FC<ComponentsInterface> = ({
+const Button: FC<ButtonsInterface> = ({
   Text,
   CustomClass,
   variant,

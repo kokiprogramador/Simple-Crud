@@ -1,10 +1,7 @@
+import HomeTemplate from "../UI/templates/HomeTemplate/HomeTemplate";
 
-
-
-const Home = () =>{
-    return(
-        <div>Home</div>
-    )
-}
+const Home = () => {
+  return <HomeTemplate />;
+};
 
 export default Home;
