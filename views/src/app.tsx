@@ -1,9 +1,4 @@
-import RoutesProvider from '../routes/RoutesProvider.tsx'
-
+import RoutesProvider from "../routes/RoutesProvider.tsx";
 export function App() {
-
-
-  return (
-    <RoutesProvider />
-  );
+  return <RoutesProvider />;
 }

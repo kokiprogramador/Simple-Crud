@@ -8,7 +8,9 @@
 
 .Header{
 	display: flex;
-	padding: 1.2%;
+	width: 100%;
+	height: 100%;
+	padding: 1rem;
 	background: var(--header-color);
 	color: var(--items-color); 
 }

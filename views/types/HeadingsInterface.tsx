@@ -3,5 +3,3 @@ export interface HeadingsInterface{
   CustomClass: string;
   TypeHeader: string;
 }
-
-export default HeadingsInterface;
