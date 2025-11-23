@@ -44,11 +44,11 @@ export const todoPost = async (req, res) => {
         message: "Content must be less than 255 characters",
       });
     } else {
-      const taskData = data.trim();
+      const taskData = data;
       await Task.create(taskData);
       res.status(201).json({
         message: "Task created sucessfully",
-        task: taskDatak.toJSON(),
+        task: taskData,
       });
     }
   } catch (error) {
