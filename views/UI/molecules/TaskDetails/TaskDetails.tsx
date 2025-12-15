@@ -1,8 +1,16 @@
+import Headings from "../../atoms/Headings/Headings";
+import Paragraph from "../../atoms/Paragraph/Paragrah";
+import styles from "./TaskDetail.module.css";
+
 const TaskDetails = ({ task }) => {
   return (
-    <div>
-      <h4>{task.content}</h4>
-      <p>{task.description}</p>
+    <div className={styles.Card}>
+      <Headings
+        Text={task.content}
+        TypeHeader="h3"
+        CustomClass={styles.Card_Title}
+      />
+      <Paragraph Text={task.description} CustomClass={styles.Card_Content} />
     </div>
   );
 };

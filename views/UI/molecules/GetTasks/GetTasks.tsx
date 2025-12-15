@@ -26,6 +26,7 @@ const GetTasks = () => {
     return <div>There's no data.</div>;
   }
 
+
   return (
     <>
       {tasks.map((task) => (

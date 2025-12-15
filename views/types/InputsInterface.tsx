@@ -5,4 +5,5 @@ export interface InputsInterface {
   PlaceHolder: string;
   CustomClass: string;
   OnChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  Required: boolean;
 }
