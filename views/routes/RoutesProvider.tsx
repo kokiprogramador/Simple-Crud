@@ -1,21 +1,15 @@
-import {
-  LocationProvider,
-  Router,
-  lazy,
-  Route
-} from "preact-iso";
-
-
-/*Remember create other routes.*/
-
-const Home = lazy(() => import('../pages/Home'))
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "../pages/Home";
+import EditForm from "../pages/EditForm";
 
 export const RoutesProvider = () => {
   return (
-    <LocationProvider>
-      <Router>{[<Route path="/" component={Home} />]}</Router>
-    </LocationProvider>
-    /*I spent 30 minutes in learning how to render my component lol*/ 
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/editform/:id" element={<EditForm />} />
+      </Routes>
+    </Router>
   );
 };
 

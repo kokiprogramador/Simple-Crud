@@ -1,53 +1,59 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../atoms/Input/Input";
 import Button from "../../atoms/Button/Button";
 import Headings from "../../atoms/Headings/Headings";
-import styles from "./PostTasks.module.css";
+import styles from "./UpdateTask.module.css";
 
-const PostTasks = () => {
+const UpdateTask = ({ taskId, initialData = {} }) => {
   const [formData, setFormData] = useState({
-    content: "",
-    description: "",
+    content: initialData.content || "",
+    description: initialData.description || "",
   });
-
-  const handleChange = (e: any) => {
+  const navigate = useNavigate();
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
-    });
-    console.log(formData);
+    }));
   };
 
-  /*For this kind of things, better use React.events*/
-  /*Lol this shit is deprecated*/
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
-    const content = formData.get("content") as string;
-    const description = formData.get("description") as string;
-    console.log(content, description);
-
-    const data = Object.fromEntries(formData);
-    console.log(data);
-
     try {
-      const response = await fetch("http://localhost:8000/api/createTask", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `http://localhost:8000/api/putTask/${taskId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         },
-        body: JSON.stringify(data),
-      });
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error del servidor:", errorData);
+        throw new Error(
+          `HTTP ${response.status}: ${JSON.stringify(errorData)}`,
+        );
+      }
+
+      const result = await response.json();
+      console.log("Success:", result);
+      navigate("/");
     } catch (error) {
-      console.log(error);
+      console.error("Error completo:", error);
     }
   };
+
   return (
-    <form className={styles.Form} onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <Headings
-        Text={"Add a new task"}
+        Text={"Edit task"}
         CustomClass={styles.Form__Heading}
         TypeHeader={"h3"}
       />
@@ -86,4 +92,4 @@ const PostTasks = () => {
   );
 };
 
-export default PostTasks;
+export default UpdateTask;
