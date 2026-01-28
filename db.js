@@ -19,4 +19,4 @@ export default {
   connectToDb,
 };
 
-//Execute sequelize.sync(); to connect database;
+sequelize.sync();

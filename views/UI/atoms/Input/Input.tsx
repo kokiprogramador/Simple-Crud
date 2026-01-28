@@ -9,6 +9,7 @@ const Input: FC<InputsInterface> = ({
   Name,
   OnChange,
   CustomClass,
+  Required,
 }) => {
   return (
     <input
@@ -18,6 +19,7 @@ const Input: FC<InputsInterface> = ({
       name={Name}
       onChange={OnChange}
       className={`${styles.Heading} ${CustomClass}`}
+      required={Required}
     />
   );
 };

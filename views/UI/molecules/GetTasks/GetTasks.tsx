@@ -30,7 +30,7 @@ const GetTasks = () => {
     <>
       {tasks.map((task) => (
         <div>
-          <TaskDetails key={task.id} task={task} />
+          <TaskDetails key={tasks.id} task={task} />
         </div>
       ))}
     </>
