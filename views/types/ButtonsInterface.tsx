@@ -2,4 +2,5 @@ export interface ButtonsInterface extends React.ButtonHTMLAttributes<HTMLButtonE
   variant: "button" | "reset" | "submit";
   Text: string;
   CustomClass: string;
+  onClick: any;
 }

@@ -40,6 +40,7 @@ const PostTasks = () => {
         },
         body: JSON.stringify(data),
       });
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

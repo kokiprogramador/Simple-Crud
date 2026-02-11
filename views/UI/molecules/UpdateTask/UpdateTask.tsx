@@ -6,6 +6,7 @@ import Headings from "../../atoms/Headings/Headings";
 import styles from "./UpdateTask.module.css";
 
 const UpdateTask = ({ taskId, initialData = {} }) => {
+  console.log(taskId);
   const [formData, setFormData] = useState({
     content: initialData.content || "",
     description: initialData.description || "",
@@ -36,7 +37,7 @@ const UpdateTask = ({ taskId, initialData = {} }) => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error("Error del servidor:", errorData);
+        console.error("Server error:", errorData);
         throw new Error(
           `HTTP ${response.status}: ${JSON.stringify(errorData)}`,
         );
@@ -46,7 +47,7 @@ const UpdateTask = ({ taskId, initialData = {} }) => {
       console.log("Success:", result);
       navigate("/");
     } catch (error) {
-      console.error("Error completo:", error);
+      console.error("Complete error:", error);
     }
   };
 

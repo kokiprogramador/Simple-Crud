@@ -18,10 +18,8 @@ export const todoGetAll = async (req, res) => {
         message: "Server temporaly unavailable",
       });
     }
-    //This is a env aware error.
-    res.status(500).json({
+    res.status(503).json({
       message: "Failed to retrieve tasks",
-      error: process.env.NODE_ENV === "development" ? error.message : undefined,
     });
   }
 };
@@ -61,10 +59,8 @@ export const todoPost = async (req, res) => {
         errors: error.errors.map((err) => err.message),
       });
     }
-    //This is a env aware error.
-    res.status(500).json({
-      message: "Failed to retrieve tasks",
-      error: process.env.NODE_ENV === "development" ? error.message : undefined,
+    res.status(503).json({
+      message: "Failed to create tasks",
     });
   }
 };
@@ -90,9 +86,8 @@ export const todoGetById = async (req, res) => {
     res.json(task.toJSON());
   } catch (error) {
     console.error("Get task by ID error:", error);
-    res.status(500).json({
+    res.status(503).json({
       message: "Failed to retrieve task",
-      error: process.env.NODE_ENV === "development" ? error.message : undefined,
     });
   }
 };
@@ -143,33 +138,24 @@ export const todoPut = async (req, res) => {
       });
     }
 
-    res.status(500).json({
+    res.status(503).json({
       message: "Failed to update task",
-      error: process.env.NODE_ENV === "development" ? error.message : undefined,
     });
   }
 };
 
 export const todoDelete = async (req, res) => {
   try {
-    const { id } = req.params.id;
-    if (id) {
-      await Task.destroy({
-        where: {
-          id: id,
-        },
-      });
-    }
-    res.status(200).json({ message: "Task deleted" });
+    const { id } = req.params;
+    await Task.destroy({ where: { id } });
+    res.sendStatus(200);
   } catch (error) {
-    console.error("Delete task error:", error);
-    res.status(500).json({
-      message: "Failed to delete task",
-      error: process.env.NODE_ENV === "development" ? error.message : undefined,
+    console.log(error);
+    res.sendStatus(503).json({
+      message: "Failed to Delete task",
     });
   }
 };
-
 export default {
   todoGetAll,
   todoPost,
