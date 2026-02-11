@@ -1,14 +1,7 @@
-import { useParams } from "react-router-dom";
-import UpdateTask from "../UI/molecules/UpdateTask/UpdateTask";
+import EditFormMain from "../UI/organisms/EditFormMain/EditFormMain";
 
 const EditForm = () => {
-  const { id } = useParams<{ id: string }>();
-  return (
-    <div>
-      <h1>Editing Task: {id}</h1>
-      <UpdateTask taskId={id} />
-    </div>
-  );
+  return <EditFormMain />;
 };
 
 export default EditForm;
